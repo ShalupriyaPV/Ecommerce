@@ -1,0 +1,100 @@
+{% extends 'common.html' %}
+{% block content %}
+<style>
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
+    background-color: #f5b8c2;
+  }
+
+  .product-container div {
+    margin: 0.5em 0;
+  }
+
+  .product-container img {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .address-container, .address-container div {
+    margin: 1em 0;
+    background-color:#f2d9e6;
+
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+  }
+
+  .buttons button {
+    padding: 0.5em 1em;
+    background-color: #99ccff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .buttons button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="products">
+  {% for i in u %}
+  <div class="product-container">
+    <div>{{ i.product }}</div>
+    <div>
+      <img src="{{ i.image.url }}" style="height:30em" align="center">
+    </div>
+    <div class="radio-group">
+      <h5>Size</h5>
+        <input type="radio" name="size_{{ forloop.counter }}" value="small"> <B>S</B>
+
+        <input type="radio" name="size_{{ forloop.counter }}" value="medium"> <B>M</B>
+
+        <input type="radio" name="size_{{ forloop.counter }}" value="large"> <B>L</B>
+
+        <input type="radio" name="size_{{ forloop.counter }}" value="extra_large"> <B>XL</B>
+
+    </div>
+     <div>Quantity
+     <input type="number"></div>
+    <div> Price:{{ i.price }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<h2>Address</h2>
+
+<div class="address-container">
+  {% if h %}
+    {% for i in h %}
+    <div>{{ i.House_no }}</div>
+    <div>{{ i.area }}</div>
+    <div>{{ i.pincode }}</div>
+    <div>{{ i.city }}</div>
+    <div>{{ i.state }}</div>
+    <div>{{ i.contactno }}</div>
+    {% endfor %}
+    <div class="buttons">
+      <a href="{% url 'addredit' %}"><button>EDIT</button></a>
+      <a href="{% url 'addrdelete' %}"><button>DELETE</button></a>
+    </div>
+  {% else %}
+    <div class="buttons">
+      <a href="{% url 'addres' %}"><button>Add Address</button></a>
+    </div>
+  {% endif %}
+</div>
+
+<div class="buttons">
+  <a href="{% url 'order' %}"><button>Place Order</button></a>
+</div>
+
+{% endblock content %}

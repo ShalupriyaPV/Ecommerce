@@ -1,0 +1,32 @@
+{% extends 'common.html' %}
+{% block content %}
+
+<div style=" background-color: #E1E8EE;">
+ <div>
+  {{o.productname}}
+ </div>
+ <div>
+  {{o.price}}
+ </div>
+ <div>
+  {{o.image.url}}
+  <img src="{{o.image.url}}" style="width:500 ,height=500" align="center">
+ </div>
+ <div>
+  {{o.qty}}
+ </div>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+<button  onclick="myalert()">
+    ADD TO CART
+</button>
+</form>
+<script>
+    function myalert() {
+
+        alert("ITEM ADDED ");
+    }
+</script>
+</div>
+
+ {% endblock content %}

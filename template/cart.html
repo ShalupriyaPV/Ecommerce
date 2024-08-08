@@ -1,0 +1,33 @@
+{% extends 'common.html' %}
+{% block content %}
+{% for i in y %}
+<div style="background-color:LightGray;">
+ <div>
+  <div>
+  {{i.products}}
+  </div>
+  <div>
+  {{i.price}}
+  </div>
+ <div>
+  {{i.image.url}}
+   <img src="{{i.image.url}}" style=height:"10em' alt="Beatles">
+ </div>
+ <div>
+  {{i.quantity}}
+ </div>
+<br>
+
+<div>
+  <a href="{% url 'delete' i.id %}">
+<button>Delete</button>
+  </a>
+</div>
+</div>
+</div>
+
+{% endfor %}
+<a href="{% url 'buynow' %}">
+  <button>Continue Shopping</button>
+</a>
+{% endblock content %}

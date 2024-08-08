@@ -1,0 +1,79 @@
+{% extends 'common.html' %}
+
+{% block content %}
+<style>
+  .edit-container {
+    background-color:#C0C0C0;
+    padding: 2em;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 2em auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .edit-container h1 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+
+  .edit-container form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-container label {
+    margin-top: 0.5em;
+    font-weight: bold;
+  }
+
+  .edit-container input[type="text"],
+  .edit-container input[type="number"] {
+    padding: 0.5em;
+    margin-top: 0.2em;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .edit-container input[type="submit"] {
+    padding: 0.7em 1.5em;
+    margin-top: 1em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .edit-container input[type="submit"]:hover {
+    background-color: 	#008000;
+  }
+</style>
+
+<div class="edit-container">
+  <h1>Edit Address</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="House_no">House No:</label>
+    <input type="text" id="House_no" value="{{ r.House_no }}" name="House_no">
+
+    <label for="area">Area:</label>
+    <input type="text" id="area" value="{{ r.Area }}" name="area">
+
+    <label for="pincode">Pincode:</label>
+    <input type="number" id="pincode" value="{{ r.pincode }}" name="pincode">
+
+    <label for="city">City:</label>
+    <input type="text" id="city" value="{{ r.city }}" name="city">
+
+    <label for="state">State:</label>
+    <input type="text" id="state" value="{{ r.state }}" name="state">
+
+    <label for="contactno">Contact No:</label>
+    <input type="text" id="contactno" value="{{ r.contactno }}" name="contactno">
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+{% endblock content %}
